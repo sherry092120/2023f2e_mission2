@@ -1,0 +1,26 @@
+$border-radius-base: 8px;
+$color-primary: #262E49;
+
+@mixin fontSizeLarge {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 600;
+}
+
+@mixin fontSizeMedium {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+}
+
+@mixin fontSizeSmall {
+    font-size: 12px;
+    line-height: 17px;
+    font-weight: 400;
+}
+
+@mixin xl {
+    @media screen and (max-width: 1199px) {
+        @content;
+    }
+}
