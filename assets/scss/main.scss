@@ -38,9 +38,10 @@ select {
     justify-content: center;
     align-items: center;
     padding: 0 12px;
-    @inclide fontSizeMedium;
+    @include fontSizeMedium;
     height: 35px;
     color: #fff;
+    cursor: pointer;
 }
 
 .ranking-card {
@@ -68,15 +69,29 @@ select {
         width: 104px;
         margin: 0 20px 0 12px;
         position: relative;
+        @include s{
+            width: 96px;
+            margin: 0 20px 0 8px;
+        }
 
         span:first-child {
             width: 100%;
             @include fontSizeMedium;
+            @include s{
+                font-size: 12px;
+                line-height: 17px;
+                font-weight: 600;
+            }
         }
 
         span:nth-child(2) {
             width: 100%;
             @include fontSizeSmall;
+            @include s{
+                font-size: 12px;
+                line-height: 14px;
+                font-weight: 400;
+            }
         }
 
         .straight-line {
@@ -87,6 +102,9 @@ select {
             width: 2px;
             height: 82%;
             background-color: #84CB98;
+            @include s{
+                height: 100%;
+            }
         }
     }
 
@@ -94,6 +112,9 @@ select {
         display: flex;
         flex-wrap: wrap;
         width: calc(100% - 24px - 136px);
+        @include s{
+            width: calc(100% - 24px - 124px);
+        }
 
         span:first-child {
             width: 100%;

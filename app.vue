@@ -33,6 +33,13 @@ header {
     font-size: 32px;
     font-weight: 600;
     padding-left: 48px;
+
+    @include s {
+      font-size: 16px;
+      font-weight: 700;
+      height: 64px;
+      line-height: 64px;
+    }
   }
 }
 
@@ -44,6 +51,10 @@ main {
   display: flex;
   flex-wrap: wrap;
   padding: 40px 48px;
+
+  @include s {
+    padding: 32px 24px;
+  }
 
   .title {
     width: 100%;
@@ -86,6 +97,13 @@ main {
   span:first-child {
     display: inline-block;
     @include fontSizeLarge;
+
+    @include s {
+      font-size: 16px;
+      line-height: 19px;
+      font-weight: 700;
+    }
+
     border-bottom: 4px solid $color-primary;
     padding-bottom: 12px;
     margin-right: 20px;
@@ -95,6 +113,10 @@ main {
     @include fontSizeLarge;
     font-weight: 400;
     color: #BFBFBF;
+
+    @include s {
+      font-size: 16px;
+      line-height: 19px;
+    }
   }
-}
-</style>
+}</style>

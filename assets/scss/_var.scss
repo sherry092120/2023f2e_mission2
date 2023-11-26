@@ -1,6 +1,17 @@
 $border-radius-base: 8px;
 $color-primary: #262E49;
 
+@mixin xl {
+    @media screen and (max-width: 1199px) {
+        @content;
+    }
+}
+@mixin s {
+    @media screen and (max-width: 575px) {
+        @content;
+    }
+}
+
 @mixin fontSizeLarge {
     font-size: 20px;
     line-height: 24px;
@@ -17,10 +28,4 @@ $color-primary: #262E49;
     font-size: 12px;
     line-height: 17px;
     font-weight: 400;
-}
-
-@mixin xl {
-    @media screen and (max-width: 1199px) {
-        @content;
-    }
 }
