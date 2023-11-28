@@ -40,7 +40,7 @@ const currentCity = inject("currentCity");
     padding: 10px 18px 0;
 
     @include xl {
-        width: 260px;
+        width: 262px;
     }
 
     .city {

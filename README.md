@@ -8,4 +8,6 @@
 
 編寫者：Sherry
 
-https://sherry092120.github.io/2023f2e_mission2/generate/
+打包： npm run generate (https://sherry092120.github.io/2023f2e_mission2/generate/)
+
+preview： npx serve .output/public

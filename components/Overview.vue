@@ -76,6 +76,29 @@ const clickSwitchBtn = () => {
     mNone.value = !mNone.value
 }
 
+// Math.round10 四捨五入至小數點後一位
+function decimalAdjust(type, value, exp) {
+    // If the exp is undefined or zero...
+    if (typeof exp === "undefined" || +exp === 0) {
+      return Math[type](value);
+    }
+    value = +value;
+    exp = +exp;
+    // If the value is not a number or the exp is not an integer...
+    if (isNaN(value) || !(typeof exp === "number" && exp % 1 === 0)) {
+      return NaN;
+    }
+    // Shift
+    value = value.toString().split("e");
+    value = Math[type](+(value[0] + "e" + (value[1] ? +value[1] - exp : -exp)));
+    // Shift back
+    value = value.toString().split("e");
+    return +(value[0] + "e" + (value[1] ? +value[1] + exp : exp));
+  }
+Math.round10 = function (value, exp) {
+    return decimalAdjust("round", value, exp);
+};
+
 onMounted(() => {
     createPie(pie2.value, {
         color: [
@@ -92,8 +115,8 @@ onMounted(() => {
     createPie(pie1.value, {
         color: ['#262E49', '#CCCCCC'],
         value: [
-            { value: overview.ticket_percent / 100 , name: '有效票數' },
-            { value: (100 - overview.ticket_percent) / 100, name: '無效票數' },
+            { value: Math.round10(overview.ticket_percent, -1) , name: '有效票數' },
+            { value: Math.round10((100 - overview.ticket_percent), -1), name: '無效票數' },
         ]
     });
     window.addEventListener('resize', resize1);

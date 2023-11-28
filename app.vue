@@ -85,7 +85,7 @@ main {
   }
 
   .map {
-    width: calc(100% - 270px - 260px);
+    width: calc(100% - 270px - 262px);
 
     @include xl {
       width: 100%;
@@ -93,7 +93,7 @@ main {
   }
 
   .information {
-    width: 260px;
+    width: 262px;
 
     @include xl {
       width: 100%;
