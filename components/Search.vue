@@ -4,14 +4,14 @@
             <select v-model="currentCity" @change="changeCity">
                 <option v-for="(data, key, index) in cityData()" :key="'city'+index">{{ key }}</option>
             </select>
-            <!-- <select>
-                <option>大安區</option>
-            </select> -->
-            <!-- <select>
-                <option>朝陽里</option>
-            </select> -->
+            <select disabled>
+                <option>請選擇</option>
+            </select>
+            <select disabled>
+                <option>請選擇</option>
+            </select>
         </div>
-        <!-- <div class="blue-btn">清除</div> -->
+        <div class="blue-btn">清除</div>
     </div>
 </template>
   
