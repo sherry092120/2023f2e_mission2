@@ -8,7 +8,7 @@
         <span>第15任 總統副總統大選</span>
         <span>第10任 立法委員選舉</span>
       </div>
-      <Search></Search>
+      <Search @commit-currentCity="commitCurrentCity"></Search>
       <Overview></Overview>
       <Map></Map>
       <Information></Information>
@@ -17,6 +17,15 @@
 </template>
 
 <script setup>
+const currentCity = ref(null);
+const commitCurrentCity = (val)=>{
+  currentCity.value = val;
+}
+
+provide('currentCity', computed(()=>currentCity.value));
+
+
+
 
 </script>
 

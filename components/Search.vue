@@ -1,25 +1,29 @@
 <template>
     <div class="search">
         <div class="select-group">
-            <select>
-                <option>台北市</option>
+            <select v-model="currentCity" @change="changeCity">
+                <option v-for="(data, key, index) in cityData()" :key="'city'+index">{{ key }}</option>
             </select>
-            <select>
+            <!-- <select>
                 <option>大安區</option>
-            </select>
-            <select>
+            </select> -->
+            <!-- <select>
                 <option>朝陽里</option>
-            </select>
+            </select> -->
         </div>
-        <div class="blue-btn">清除</div>
+        <!-- <div class="blue-btn">清除</div> -->
     </div>
 </template>
   
-<script>
-export default {
-    name: "search",
+<script setup>
+import cityData from '../data_city.js';
+const emit = defineEmits();
+const currentCity = ref(Object.keys(cityData())[0]);
+emit("commitCurrentCity",currentCity.value);
 
-};
+const changeCity = ()=>{
+    emit("commitCurrentCity",currentCity.value);
+}
 </script>
   
 <style scoped lang="scss">

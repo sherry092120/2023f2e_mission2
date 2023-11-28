@@ -1,28 +1,33 @@
 <template>
     <div class="information">
-        <div class="info-wrap">
-            <div class="city">台北市</div>
-            <div class="ranking-card">
-                <div class="number">1</div>
+        <div class="info-wrap" 
+            :style="{
+                backgroundColor: partyColor[Object.keys(cityData()[currentCity])[0]].third, 
+                borderColor: partyColor[Object.keys(cityData()[currentCity])[0]].second 
+            }">
+            <div class="city">{{ currentCity }}</div>
+            <div class="ranking-card" v-for="(party, key, index) in cityData()[currentCity]">
+                <div class="number" :style="{backgroundColor: partyColor[key].primary}">{{ cand[key].cand_no }}</div>
                 <div class="text">
-                    <span>民主進步黨</span>
-                    <span>蔡英文｜賴清德</span>
+                    <span>{{ key }}</span>
+                    <span>{{ cand[key].cand_name[0] }}｜{{ cand[key].cand_name[1] }}</span>
                     <div class="straight-line"></div>
                 </div>
                 <div class="statistics">
-                    <span>58%</span>
-                    <span>875,000 票</span>
+                    <span>{{ party.ticket_percent }}%</span>
+                    <span>{{ party.ticket_num }} 票</span>
                 </div>
             </div>
         </div>
     </div>
 </template>
   
-<script>
-export default {
-    name: "information",
+<script setup>
+import { cand, partyColor } from '../data.js';
+import cityData from '../data_city.js';
+const currentCity = inject("currentCity");
 
-};
+
 </script>
   
 <style scoped lang="scss">

@@ -8,41 +8,29 @@
             <div class="pie-charts pie-charts1" :class="{ 'm-none': mNone == true }">
                 <div ref="pie1" class="pie1"></div>
                 <div class="text">
-                    <div>80.5%</div>
+                    <div>{{ overview.ticket_percent }}%</div>
                     <div>投票率</div>
                 </div>
             </div>
             <div class="text-wrap" :class="{ 'm-none': mNone == true }">
-                <div class="text">投票數 <span>1,000,000 票</span></div>
-                <div class="text">無效票數 <span>990,000 票</span></div>
-                <div class="text">有效票數 <span>10,000 票</span></div>
+                <div class="text">投票數 <span>{{ overview.ticket_num }} 票</span></div>
+                <div class="text">無效票數 <span>{{ overview.invalid }} 票</span></div>
+                <div class="text">有效票數 <span>{{ overview.valid }} 票</span></div>
             </div>
             <div class="pie-charts pie-charts2" :class="{ 'm-none': mNone == true }">
                 <div ref="pie2" class="pie2"></div>
             </div>
             <div class="cards-wrap" :class="{ 'm-none': mNone == true }">
-                <div class="ranking-card">
-                    <div class="number">1</div>
+                <div class="ranking-card" v-for="(party, index) in countryData">
+                    <div class="number" :style="{backgroundColor: partyColor[party.party_name].primary}">{{ party.cand_no }}</div>
                     <div class="text">
-                        <span>民主進步黨</span>
-                        <span>蔡英文｜賴清德</span>
+                        <span>{{ party.party_name }}</span>
+                        <span>{{ party.cand_name[0] }}｜{{ party.cand_name[1] }}</span>
                         <div class="straight-line"></div>
                     </div>
                     <div class="statistics">
-                        <span>58%</span>
-                        <span>875,000 票</span>
-                    </div>
-                </div>
-                <div class="ranking-card">
-                    <div class="number">1</div>
-                    <div class="text">
-                        <span>民主進步黨</span>
-                        <span>蔡英文｜賴清德</span>
-                        <div class="straight-line"></div>
-                    </div>
-                    <div class="statistics">
-                        <span>58%</span>
-                        <span>875,000 票</span>
+                        <span>{{ party.ticket_percent }}%</span>
+                        <span>{{ party.ticket_num }} 票</span>
                     </div>
                 </div>
             </div>
@@ -52,6 +40,7 @@
   
 <script setup>
 import usePie from '../usePie.js';
+import { countryData, partyColor, overview } from '../data.js';
 const switchBtn = ref(false);
 const mNone = ref(false);
 const pie1 = ref(null);
@@ -89,18 +78,22 @@ const clickSwitchBtn = () => {
 
 onMounted(() => {
     createPie(pie2.value, {
-        color: ['#84CB98', '#8894D8', '#DFA175'],
+        color: [
+            partyColor[countryData[0].party_name].primary,
+            partyColor[countryData[1].party_name].primary,
+            partyColor[countryData[2].party_name].primary,
+        ],
         value: [
-            { value: 0.57, name: 'Name A' },
-            { value: 0.4, name: 'Name B' },
-            { value: 0.03, name: 'Name C' },
+            { value: countryData[0].ticket_percent / 100, name: countryData[0].party_name },
+            { value: countryData[1].ticket_percent / 100, name: countryData[1].party_name },
+            { value: countryData[2].ticket_percent / 100, name: countryData[2].party_name },
         ]
     });
     createPie(pie1.value, {
         color: ['#262E49', '#CCCCCC'],
         value: [
-            { value: 0.749, name: '有效票數' },
-            { value: 0.251, name: '無效票數' },
+            { value: overview.ticket_percent / 100 , name: '有效票數' },
+            { value: (100 - overview.ticket_percent) / 100, name: '無效票數' },
         ]
     });
     window.addEventListener('resize', resize1);
